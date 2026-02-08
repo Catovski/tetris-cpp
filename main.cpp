@@ -1,10 +1,9 @@
-#pragma execution_character_set("windows-1251")
 #include <iostream>
 #include <thread>
 #include <chrono>
 
 int main(){
-    std::cout << "===== Простейший тетрис =====\n\n";
+    std::cout << "===== The simplest Tetris =====\n\n";
 
     //Простое игравое поле 10х20.
     const int width  = 10;
@@ -37,8 +36,8 @@ int main(){
         #endif
 
         //Отрисовываем поля
-        std::cout << "Тетрис, минимальная версия\n";
-        std::cout << "Управление: А - влево, D - вправо, Q - выход\n\n";
+        std::cout << "Tetris, the minimal version\n";
+        std::cout << "Control: A - left, D - right, Q - exit\n\n";
 
         for(int y = 0; y < height; ++y){
             std::cout << "|";
@@ -55,7 +54,7 @@ int main(){
         std::cout << "+\n";
 
         //Обработка ввода
-        std::cout << "\nВведите команду(a/d/q): ";
+        std::cout << "\nEnter the command(a/d/q): ";
         char input;
         std::cin >> input;
 
@@ -70,7 +69,7 @@ int main(){
                 break;
             case 'q':
                 gameRunning = false;
-                std::cout << "\nВыход из игры...\n";
+                std::cout << "\nExit the game...\n";
             default:
                 break;
         }
