@@ -22,10 +22,14 @@ int main(){
     board[0][4] = '#';
     board[0][5] = '#';
     board[1][4] = '#';
-    board[1][4] = '#';
+    board[1][5] = '#';
     
     bool gameRunning = true;
     int playerX = 4;
+
+    int playerY = 0;
+    int fallCounter = 0;
+    const int FALL_DELAY = 20;
 
     while(gameRunning){
         //Очищаем экран
@@ -70,6 +74,7 @@ int main(){
             case 'q':
                 gameRunning = false;
                 std::cout << "\nExit the game...\n";
+                break;
             default:
                 break;
         }
@@ -80,12 +85,27 @@ int main(){
                 board[y][x] = '.';
             }
         }
+        
+        //Автаматическое падение
+        if(fallCounter++ >= FALL_DELAY){
+            fallCounter = 0;
+            playerY++;
+        }
 
         //Рисуем фигуру новой позиции
-        board[0][playerX] = '#';
-        board[0][playerX + 1] = '#';
-        board[1][playerX] = '#';
-        board[1][playerX + 1] = '#';
+        board[playerY][playerX] = '#';
+        board[playerY][playerX + 1] = '#';
+        board[playerY + 1][playerX] = '#';
+        board[playerY + 1][playerX + 1] = '#';
+
+        //Проверка столкновение с дном
+        if(playerY >= height -2){ //Достигаем дна
+            playerY = height - 2; //Фиксируем у дна
+
+            //Создаем новую фигуру сверху
+            playerY = 0;
+            playerX = 0;
+        }
     }
     return 0;
 }
